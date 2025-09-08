@@ -38,11 +38,23 @@ export function buildMongoQuery(query: ParsedQuery): MongoBuildResult {
   const mongoOptions: Record<string, unknown> = {};
 
   if (options.select) {
-    const fields = String(options.select).split(',');
-    mongoOptions.projection = fields.reduce<Record<string, 1>>((acc, f) => {
-      acc[f] = 1;
-      return acc;
+    const fields = String(options.select).split(',').map(f => f.trim()).filter(f => f.length > 0);
+    const hasExclusion = fields.some(f => f.startsWith('-'));
+    const hasInclusion = fields.some(f => !f.startsWith('-'));
+    if (hasExclusion && hasInclusion) {
+      throw new Error("Cannot mix inclusion and exclusion in projection (except for _id).");
+    }
+    if (hasExclusion) {
+      mongoOptions.projection = fields.reduce<Record<string, 0>>((acc, f) => {
+        acc[f.substring(1)] = 0;
+        return acc;
       }, {});
+    } else {
+      mongoOptions.projection = fields.reduce<Record<string, 1>>((acc, f) => {
+        acc[f] = 1;
+        return acc;
+      }, {});
+    }
   }
 
   if (sort) {
