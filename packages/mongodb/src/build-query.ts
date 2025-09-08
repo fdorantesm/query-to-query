@@ -57,12 +57,13 @@ export function buildMongoQuery(query: ParsedQuery): MongoBuildResult {
     }, {});
   }
 
-  if (options.limit) mongoOptions.limit = Number(options.limit);
   if (options.page) {
     const page = Number(options.page);
     const limit = Number(options.limit) || 10;
     mongoOptions.skip = (page - 1) * limit;
     mongoOptions.limit = limit;
+  } else if (options.limit) {
+    mongoOptions.limit = Number(options.limit);
   }
   if (options.skip) mongoOptions.skip = Number(options.skip);
 
