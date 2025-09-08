@@ -1,0 +1,23 @@
+{
+  "name": "query-to-query-monorepo",
+  "private": true,
+  "version": "0.0.1",
+  "workspaces": ["packages/*"],
+    "scripts": {
+    "build": "npm run build -w @query-to-query/common && npm run build -w @query-to-query/core && npm run build -w @query-to-query/mongodb",
+    "test": "jest",
+    "lint": "eslint . --ext .ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2",
+    "@types/qs": "^6.9.7",
+    "@types/jest": "^29.5.11",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.1",
+    "mongodb": "^6.8.0",
+    "mongodb-memory-server": "^10.1.4",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "@typescript-eslint/eslint-plugin": "^7.18.0"
+  }
+}

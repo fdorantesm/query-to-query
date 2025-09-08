@@ -1,0 +1,21 @@
+{
+  "name": "@query-to-query/core",
+  "version": "0.0.1",
+  "description": "Parseo y construcción de query strings",
+  "author": "Fernando Dorantes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fdorantesm/query-to-query"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@query-to-query/common": "0.0.1",
+    "qs": "^6.11.1"
+  }
+}
