@@ -1,0 +1,20 @@
+{
+  "name": "@query-to-query/mongodb",
+  "version": "0.0.1",
+  "description": "Adaptador para convertir filtros en consultas de MongoDB",
+  "author": "Fernando Dorantes",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fdorantesm/query-to-query"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "@query-to-query/common": "0.0.1"
+  }
+}
